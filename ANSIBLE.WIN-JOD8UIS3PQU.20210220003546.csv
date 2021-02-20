@@ -1,0 +1,5 @@
+Customer ID,Customer name,Hostname,IP address,OS name,Date of health check,Health Check Result,Check name,Ref
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.9,Microsoft Windows Server 2019 Standard,2021-02-20-00-35-50,OK,Limit local account use of blank passwords to console logon only,2.3.1.4
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.9,Microsoft Windows Server 2019 Standard,2021-02-20-00-35-51,OK,Shut down system immediately if unable to log security audits,2.3.2.2
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.9,Microsoft Windows Server 2019 Standard,2021-02-20-00-35-51,OK,Prevent users from installing printer drivers,2.3.4.2
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.9,Microsoft Windows Server 2019 Standard,2021-02-20-00-35-51,OK,Domain member: Digitally encrypt or sign secure channel data (always),2.3.6.1
