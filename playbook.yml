@@ -1,0 +1,7 @@
+---
+- name: CCM Windows
+  hosts: all
+  gather_facts: 
+  ignore_errors: true
+  roles:
+  - role: ccm-win

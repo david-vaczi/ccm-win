@@ -1,0 +1,36 @@
+---
+- name: Load policies
+  include_vars: vars/policy.yml
+
+# - debug:
+#     msg: 'The full path {{ ccm_file }}'
+
+# - debug:
+#     msg: "{{ item }}"
+#   loop:
+#     - "{{ ccm_header }}"
+#     - "{{ ccm_chain }}"
+
+- name: Make the output file's name permanent
+  set_fact:
+    ccm_file_now: "{{ ccm_file }}"
+
+- name: Create the output file as {{ ccm_file_now }}
+  win_copy:
+    content: "{{ ccm_header }}"
+    dest: "{{ ccm_file_now }}"
+
+- name: Run health check
+  win_shell: "{{ item.action }}"
+  register: ccm_result
+  loop: "{{ ccm_hc }}"
+
+- name: Collect results of health check
+  set_fact:
+    ccm_fact: "{{ ccm_result['results'] | map(attribute='stdout') | list | replace('\\r\\n','') }}"
+
+- name: Populate the output with data
+  win_lineinfile:
+    path: "{{ ccm_file_now }}"
+    line: "{{ ccm_chain }},{{ item.1 }},{{ item.0.name }},{{ item.0.ref }}"
+  loop: "{{ ccm_hc | zip(ccm_fact) | list }}"

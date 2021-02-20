@@ -1,0 +1,5 @@
+---
+ccm_timestamp: "{{ lookup('pipe', 'date +%Y-%m-%d-%H-%M-%S') }}"
+ccm_file: "{{ ccm_path }}ANSIBLE.{{ ansible_hostname }}.{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}.csv"
+ccm_header: "Customer ID,Customer name,Hostname,IP address,OS name,Date of health check,Health Check Result,Check name,Ref"
+ccm_chain: "{{ ccm_id }},{{ ccm_name }},{{ ansible_hostname }},{{ ansible_ip_addresses[0] }},{{ ansible_distribution }},{{ ccm_timestamp }}"
