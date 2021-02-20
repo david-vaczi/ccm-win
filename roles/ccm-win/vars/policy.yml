@@ -16,3 +16,53 @@ ccm_hc:
   - name: "Domain member: Digitally encrypt or sign secure channel data (always)"
     ref: "2.3.6.1"
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters -Name RequireSignOrSeal) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Domain member: Digitally encrypt secure channel data (when possible)"
+    ref: "2.3.6.2"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\ -Name SealSecureChannel) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Domain member: Digitally sign secure channel data (when possible)"
+    ref: "2.3.6.3"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\ -Name SignSecureChannel) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Domain member: Disable machine account password changes"
+    ref: "2.3.6.4"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\ -Name DisablePasswordChange) {Write-Output "KO"} else {Write-Output "OK"}'
+  
+  - name: "Domain member: Maximum machine account password age"
+    ref: "2.3.6.5"
+    action: 'if (((Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\ -Name MaximumPasswordAge) -ne 0) -and ((Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\ -Name MaximumPasswordAge) -le 30)) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Domain member: Require strong (Windows 2000 or later) session key"
+    ref: "2.3.6.6"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\ -Name RequireStrongKey) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Interactive logon: Prompt user to change password before expiration"
+    ref: "2.3.7.7"
+    action: 'if (((Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name PasswordExpiryWarning) -ge 5) -and ((Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name PasswordExpiryWarning) -le 14)) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Microsoft network client: Digitally sign communications (if server agrees)"
+    ref: "2.3.8.2"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\ -Name EnableSecuritySignature) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Microsoft network client: Send unencrypted password to third-party SMB servers"
+    ref: "2.3.8.3"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\ -Name EnablePlainTextPassword) {Write-Output "KO"} else {Write-Output "OK"}'
+
+  - name: "Microsoft network server: Amount of idle time required before suspending session"
+    ref: "2.3.9.1"
+    action: 'if (((Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\ -Name AutoDisconnect) -ne 0) -and ((Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\ -Name AutoDisconnect) -le 15)) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Microsoft network server: Disconnect clients when logon hours expire"
+    ref: "2.3.9.4"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\ -Name EnableForcedLogoff) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  #There is a GAP here as registry value is not found for 2.3.10.1
+
+  - name: "Network access: Do not allow anonymous enumeration of SAM accounts"
+    ref: "2.3.10.2"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\ -Name RestrictAnonymousSAM) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Network access: Let Everyone permissions apply to anonymous users"
+    ref: "2.3.10.5"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\ -Name EveryoneIncludesAnonymous) {Write-Output "KO"} else {Write-Output "OK"}'
