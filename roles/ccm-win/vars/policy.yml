@@ -56,7 +56,7 @@ ccm_hc:
 
   - name: "Microsoft network server: Disconnect clients when logon hours expire"
     ref: "2.3.9.4"
-    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\ -Name EnableForcedLogoff) {Write-Output "OK"} else {Write-Output "KO"}'
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\ -Name EnableForcedLogoff) {Write-Output "OK"} else {Write-Output "KO"}'
 
   #There is a GAP here as registry value is not found for 2.3.10.1
 
