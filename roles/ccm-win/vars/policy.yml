@@ -1,3 +1,4 @@
+---
 ccm_hc:
   - name: "Limit local account use of blank passwords to console logon only"
     ref: "2.3.1.4"
@@ -39,7 +40,7 @@ ccm_hc:
 
   - name: "Interactive logon: Prompt user to change password before expiration"
     ref: "2.3.7.7"
-    action: 'if (((Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name PasswordExpiryWarning) -ge 5) -and ((Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name PasswordExpiryWarning) -le 14)) {Write-Output "OK"} else {Write-Output "KO"}'
+    action: 'if (((Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name PasswordExpiryWarning) -ge 5) -and ((Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name PasswordExpiryWarning) -le 14)) {Write-Output "OK"} else {Write-Output "KO"}'
 
   - name: "Microsoft network client: Digitally sign communications (if server agrees)"
     ref: "2.3.8.2"
