@@ -1,0 +1,17 @@
+Customer ID,Customer name,Hostname,IP address,OS name,Date of health check,Health Check Result,Check name,Ref
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-13,OK,Limit local account use of blank passwords to console logon only,2.3.1.4
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-14,OK,Shut down system immediately if unable to log security audits,2.3.2.2
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-14,OK,Prevent users from installing printer drivers,2.3.4.2
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-14,OK,Domain member: Digitally encrypt or sign secure channel data (always),2.3.6.1
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-14,OK,Domain member: Digitally encrypt secure channel data (when possible),2.3.6.2
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-14,OK,Domain member: Digitally sign secure channel data (when possible),2.3.6.3
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-14,OK,Domain member: Disable machine account password changes,2.3.6.4
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-15,OK,Domain member: Maximum machine account password age,2.3.6.5
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-15,OK,Domain member: Require strong (Windows 2000 or later) session key,2.3.6.6
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-15,OK,Interactive logon: Prompt user to change password before expiration,2.3.7.7
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-15,OK,Microsoft network client: Digitally sign communications (if server agrees),2.3.8.2
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-15,OK,Microsoft network client: Send unencrypted password to third-party SMB servers,2.3.8.3
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-15,OK,Microsoft network server: Amount of idle time required before suspending session,2.3.9.1
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-15,OK,Microsoft network server: Disconnect clients when logon hours expire,2.3.9.4
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-16,OK,Network access: Do not allow anonymous enumeration of SAM accounts,2.3.10.2
+NA,Not Specified,WIN-JOD8UIS3PQU,192.168.1.12,Microsoft Windows Server 2019 Standard,2021-02-20-11-44-16,OK,Network access: Let Everyone permissions apply to anonymous users,2.3.10.5

@@ -67,3 +67,30 @@ ccm_hc:
   - name: "Network access: Let Everyone permissions apply to anonymous users"
     ref: "2.3.10.5"
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\ -Name EveryoneIncludesAnonymous) {Write-Output "KO"} else {Write-Output "OK"}'
+
+  - name: "Network access: Remotely accessible registry paths"
+    ref: "2.3.10.7"
+    action: 'if (-not (Compare-Object (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedExactPaths\ -Name Machine) "System\CurrentControlSet\Control\ProductOptions", "System\CurrentControlSet\Control\Server Applications", "Software\Microsoft\Windows NT\CurrentVersion"))  {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Network access: Remotely accessible registry paths and sub-paths"
+    ref: "2.3.10.8"
+    action: 'if (-not (Compare-Object (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedPaths\ -Name Machine) "System\CurrentControlSet\Control\Print\Printers", "System\CurrentControlSet\Services\Eventlog", "Software\Microsoft\OLAP Server", "Software\Microsoft\Windows NT\CurrentVersion\Print", "Software\Microsoft\Windows NT\CurrentVersion\Windows", "System\CurrentControlSet\Control\ContentIndex", "System\CurrentControlSet\Control\Terminal Server", "System\CurrentControlSet\Control\Terminal Server\UserConfig", "System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration", "Software\Microsoft\Windows NT\CurrentVersion\Perflib", "System\CurrentControlSet\Services\SysmonLog"))  {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "Network access: Restrict anonymous access to Named Pipes and Shares"
+    ref: "2.3.10.9"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters -Name RestrictNullSessAccess) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  #Note: The BoI agreed value is "Classic - local users authenticate as themselves". In the registry that is the 0 value.
+  - name: "Network access: Sharing and security model for local accounts"
+    ref: "2.3.10.11"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa -Name ForceGuest) {Write-Output "KO"} else {Write-Output "OK"}'
+
+  #There is a GAP here as registry value is not found for 2.3.11.2"
+
+  #There is a GAP here as registry value is not found for 2.3.11.3"
+
+  - name: "Network security: Force logoff when logon hours expire"
+    ref: "2.3.11.6"
+    action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\ -Name EnableForcedLogOff) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  #There is a GAP here as registry value is not found for 2.3.11.8. The values are numerical, but the agreed-upon values are certain strings."
