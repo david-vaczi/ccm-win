@@ -94,3 +94,65 @@ ccm_hc:
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\ -Name EnableForcedLogOff) {Write-Output "OK"} else {Write-Output "KO"}'
 
   #There is a GAP here as registry value is not found for 2.3.11.8. The values are numerical, but the agreed-upon values are certain strings."
+
+  - name: "System objects: Require case insensitivity for non-Windows subsystems"
+    ref: "2.3.15.1"
+    action: 'if (Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel\" -Name ObCaseInsensitive) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)"
+    ref: "2.3.15.2"
+    action: 'if (Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\" -Name ProtectionMode) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  - name: "System settings: Optional subsystems"
+    ref: "2.3.16.1"
+    action: 'if ((Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\SubSystems\" -Name Optional).Count -eq 0) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  #There is a GAP here as registry value is not found for 18.3.1."
+
+  #There is a GAP here as registry value is not found for 18.3.2."
+
+  #There is a GAP here as registry value is not found for 18.3.3."
+
+  - name: "Allow ICMP redirects to override OSPF generated routes"
+    ref: "18.3.4"
+    action: 'if (-not (Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\" -Name EnableICMPRedirect)) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  #There is a GAP here as registry value is not found for 18.3.5. However the tech spec states it doesn't exist by default anyways."
+
+  #There is a GAP here as registry value is not found for 18.3.6. However the tech spec states it doesn't exist by default anyways."
+
+  #There is a GAP here as registry value is not found for 18.3.7. However the tech spec states it doesn't exist by default anyways."
+
+  #There is a GAP here as registry value is not found for 18.3.8.
+
+  #There is a GAP here as registry value is not found for 18.3.9.
+
+  #There is a GAP here as registry value is not found for 18.3.10. However the tech spec states it doesn't exist by default anyways."
+
+  #There is a GAP here as registry value is not found for 18.3.11. However the tech spec states it doesn't exist by default anyways."
+
+  #There is a GAP here as registry value is not found for 18.3.12.
+
+  - name: "Apply UAC restrictions to local accounts on network logons"
+    ref: "18.6.1"
+    action: 'if (Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\" -Name LocalAccountTokenFilterPolicy) {Write-Output "OK"} else {Write-Output "KO"}'
+
+  #There is a GAP here as registry value is not found for 18.4.9.1.
+
+  #There is a GAP here as registry value is not found for 18.4.9.2.
+
+  #There is a GAP here as registry value is not found for 18.4.10.2.
+
+  #There is a GAP here as registry value is not found for 18.4.20.1.
+
+  #There is a GAP here as registry value is not found for 18.4.20.2.
+
+  #There is a GAP here as registry value is not found for 18.4.21.2.
+
+  #There is a GAP here as registry value is not found for 18.4.19.2.1.
+
+  #There is a GAP here as registry value is not found for 18.6.2
+  
+  
+
+
