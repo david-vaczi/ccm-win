@@ -1,16 +1,16 @@
 ---
 ccm_hc:
-  - name: "Limit local account use of blank passwords to console logon only"
+  - name: "Accounts: Limit local account use of blank passwords to console logon only"
     ref: "2.3.1.4"
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa -Name LimitBlankPasswordUse) {Write-Output "OK"} else {Write-Output "KO"}'
 
-  - name: "Shut down system immediately if unable to log security audits"
+  - name: "Audit: Shut down system immediately if unable to log security audits"
     ref: "2.3.2.2"
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa -Name CrashOnAuditFail) {Write-Output "KO"} else {Write-Output "OK"}'
 
   #There is a GAP here as registry value is not found for 2.3.4.1
 
-  - name: "Prevent users from installing printer drivers"
+  - name: "Devices: Prevent users from installing printer drivers"
     ref: "2.3.4.2"
     action: 'if (Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\" -Name AddPrinterDrivers) {Write-Output "OK"} else {Write-Output "KO"}'
 
