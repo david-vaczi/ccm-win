@@ -1,5 +1,127 @@
 ---
 ccm_hc:
+  ##############################
+  # NO REGISTRY PATH SPECIFIED #
+  ##############################
+  - name: "Access Credential Manager as a trusted caller"
+    ref: "2.2.1"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Act as part of the operating system"
+    ref: "2.2.3"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Adjust memory quotas for a process"
+    ref: "2.2.5"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Back up files and directories"
+    ref: "2.2.8"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "AChange the system time"
+    ref: "2.2.9"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Change the time zone"
+    ref: "2.2.10"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Create a pagefile"
+    ref: "2.2.11"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Create a token object"
+    ref: "2.2.12"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Create global objects"
+    ref: "2.2.13"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Create permanent shared objects"
+    ref: "2.2.14"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Create symbolic links"
+    ref: "2.2.15"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Debug program"
+    ref: "2.2.16"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Enable computer and user accounts to be trusted for delegation"
+    ref: "2.2.22"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Force shutdown from a remote system"
+    ref: "2.2.23"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Generate security audits"
+    ref: "2.2.24"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Impersonate a client after authentication"
+    ref: "2.2.25"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Increase scheduling priority"
+    ref: "2.2.26"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Load and unload device drivers"
+    ref: "2.2.27"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Lock pages in memory"
+    ref: "2.2.28"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Manage auditing and security log"
+    ref: "2.2.30"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Modify an object label"
+    ref: "2.2.31"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Modify firmware environment values"
+    ref: "2.2.32"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Perform volume maintenance tasks"
+    ref: "2.2.33"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Profile single process"
+    ref: "2.2.34"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Profile system performance"
+    ref: "2.2.35"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Replace a process level token"
+    ref: "2.2.36"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Restore files and directories"
+    ref: "2.2.37"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Shuit down the system"
+    ref: "2.2.38"
+    action: 'Write-Output "No registry path specified"'
+
+  - name: "Take ownership of files or other objects"
+    ref: "2.2.40"
+    action: 'Write-Output "No registry path specified"'
+
+  ################################
+  # REGISTRY PATHS ARE SPECIFIED #
+  ################################
   - name: "Accounts: Limit local account use of blank passwords to console logon only"
     ref: "2.3.1.4"
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa -Name LimitBlankPasswordUse) {Write-Output "OK"} else {Write-Output "KO"}'
@@ -8,7 +130,10 @@ ccm_hc:
     ref: "2.3.2.2"
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa -Name CrashOnAuditFail) {Write-Output "KO"} else {Write-Output "OK"}'
 
-  #There is a GAP here as registry value is not found for 2.3.4.1
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER
+  - name: "Devices: Allowed to format and eject removable media"
+    ref: "2.3.4.1"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AllocateDASD'
 
   - name: "Devices: Prevent users from installing printer drivers"
     ref: "2.3.4.2"
@@ -58,7 +183,10 @@ ccm_hc:
     ref: "2.3.9.4"
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\ -Name EnableForcedLogoff) {Write-Output "OK"} else {Write-Output "KO"}'
 
-  #There is a GAP here as registry value is not found for 2.3.10.1
+  #GAP - NO REGISTRY PATH SPECIFIED
+  - name: 'Network access: Allow anonymous SID/Name translation'
+    ref: "2.3.10.1"
+    action: 'Write-Output "No registry path specified"'
 
   - name: "Network access: Do not allow anonymous enumeration of SAM accounts"
     ref: "2.3.10.2"
@@ -85,15 +213,24 @@ ccm_hc:
     ref: "2.3.10.11"
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Control\Lsa -Name ForceGuest) {Write-Output "KO"} else {Write-Output "OK"}'
 
-  #There is a GAP here as registry value is not found for 2.3.11.2"
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER
+  - name: "Network security: Allow LocalSystem NULL session fallback"
+    ref: "2.3.11.2"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0" -Name AllowNullSessionFallback'
 
-  #There is a GAP here as registry value is not found for 2.3.11.3"
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER
+  - name: "Network security: Allow PKU2U authentication requests to this computer to use online identities"
+    ref: "2.3.11.3"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\pku2u" -Name AllowOnlineID'
 
   - name: "Network security: Force logoff when logon hours expire"
     ref: "2.3.11.6"
     action: 'if (Get-ItemPropertyValue -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\ -Name EnableForcedLogOff) {Write-Output "OK"} else {Write-Output "KO"}'
 
-  #There is a GAP here as registry value is not found for 2.3.11.8. The values are numerical, but the agreed-upon values are certain strings."
+  #GAP DEBUG - THE VALUES ARE NUMERICAL, BUT THE AGREED-UPON VALUES ARE CERTAIN STRINGS - MUST PROVIDE CONVERSION
+  - name: "Network security: LDAP client signing requirements"
+    ref: "2.3.11.8"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LsaLDAP\" -Name LDAPClientIntegrity'
 
   - name: "System objects: Require case insensitivity for non-Windows subsystems"
     ref: "2.3.15.1"
@@ -107,31 +244,65 @@ ccm_hc:
     ref: "2.3.16.1"
     action: 'if ((Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\SubSystems\" -Name Optional).Count -eq 0) {Write-Output "OK"} else {Write-Output "KO"}'
 
-  #There is a GAP here as registry value is not found for 18.3.1."
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER
+  - name: "Enable Automatic Logon (not recommended)"
+    ref: "18.3.1"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon'
 
-  #There is a GAP here as registry value is not found for 18.3.2."
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER
+  - name: "IP source routing protection level (protects against packet spoofing)"
+    ref: "18.3.2"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters\" -Name DisableIPSourceRouting'
 
-  #There is a GAP here as registry value is not found for 18.3.3."
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER
+  - name: "IP source routing protection level (protects against packet spoofing)"
+    ref: "18.3.3"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\" -Name DisableIPSourceRouting'
 
   - name: "Allow ICMP redirects to override OSPF generated routes"
     ref: "18.3.4"
     action: 'if (-not (Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\" -Name EnableICMPRedirect)) {Write-Output "OK"} else {Write-Output "KO"}'
 
-  #There is a GAP here as registry value is not found for 18.3.5. However the tech spec states it doesn't exist by default anyways."
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER (MUST BE INSTALLED AS ADDITIONAL GROUP POLICY)
+  - name: "How often keep-alive packets are sent in milliseconds"
+    ref: "18.3.5"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\" -Name KeepAliveTime'
 
-  #There is a GAP here as registry value is not found for 18.3.6. However the tech spec states it doesn't exist by default anyways."
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER (MUST BE INSTALLED AS ADDITIONAL GROUP POLICY)
+  - name: "Allow the computer to ignore NetBIOS name release requests except from WINS servers"
+    ref: "18.3.6"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\NetBT\Parameters\" -Name nonamereleaseondemand'
 
-  #There is a GAP here as registry value is not found for 18.3.7. However the tech spec states it doesn't exist by default anyways."
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER (MUST BE INSTALLED AS ADDITIONAL GROUP POLICY)
+  - name: "Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)"
+    ref: "18.3.7"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\" -Name PerformRouteDiscovery'
 
-  #There is a GAP here as registry value is not found for 18.3.8.
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER
+  - name: "Enable Safe DLL search mode (recommended)"
+    ref: "18.3.8"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\" -Name SafeDllSearchMode'
 
-  #There is a GAP here as registry value is not found for 18.3.9.
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER
+  - name: "The time in seconds before the screen saver grace period expires (0 recommended)"
+    ref: "18.3.9"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\" -Name ScreenSaverGracePeriod'
 
-  #There is a GAP here as registry value is not found for 18.3.10. However the tech spec states it doesn't exist by default anyways."
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER (MUST BE INSTALLED AS ADDITIONAL GROUP POLICY)
+  - name: "How many times unacknowledged data is retransmitted"
+    ref: "18.3.10"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters\" -Name tcpmaxdataretransmissions'
 
-  #There is a GAP here as registry value is not found for 18.3.11. However the tech spec states it doesn't exist by default anyways."
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER (MUST BE INSTALLED AS ADDITIONAL GROUP POLICY)
+  - name: "How many times unacknowledged data is retransmitted"
+    ref: "18.3.11"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\" -Name tcpmaxdataretransmissions'
 
   #There is a GAP here as registry value is not found for 18.3.12.
+  #GAP DEBUG - REGISTRY PATH NOT FOUND FOR TEST SERVER
+  - name: "Percentage threshold for the security event log at which the system will generate a warning"
+    ref: "18.3.12"
+    action: 'Get-ItemPropertyValue -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security\" -Name WarningLevel'
 
   - name: "Apply UAC restrictions to local accounts on network logons"
     ref: "18.6.1"
