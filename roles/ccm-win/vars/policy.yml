@@ -402,7 +402,7 @@ ccm_hc:
     action: 'Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections\" -Name NC_AllowNetBridge_NLA'
 
   #GAP Debug - REGISTRY PATH NOT FOUND FOR TEST SERVER
-  - name: 'Require domain users to elevate when setting a network's location'
+  - name: 'Require domain users to elevate when setting a network location'
     ref: "18.4.11.3"
     action: 'Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Network Connections\" -Name NC_StdDomainUserSetLocation'
 
